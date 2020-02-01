@@ -3,9 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const sitesRouter = require('./routes/sites');
-const hobosRouter = require('./routes/hobos');
-const sondesRouter = require('./routes/sondes');
-
+const sensorsRouter = require('./routes/sensors');
 
 require('dotenv').config()
 
@@ -23,9 +21,7 @@ connection.once('open', () => {
 })
 
 app.use('/sites', sitesRouter)
-app.use('/hobos', hobosRouter)
-app.use('/sondes', sondesRouter)
-
+app.use('/sensors', sensorsRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

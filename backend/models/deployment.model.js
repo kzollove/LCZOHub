@@ -6,7 +6,8 @@ const deploymentSchema = new Schema({
     site: {type: Schema.Types.ObjectId, ref: 'Site'},
     dateDeployed: { type: Date },
     dateRetrieved: { type: Date },
-    isDeployed: Boolean
+    isDeployed: Boolean,
+    comments: [{ body: String, date: Date }] 
 })
 
 const Deployment = mongoose.model('Deploy', deploymentSchema)

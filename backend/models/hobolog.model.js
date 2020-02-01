@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const hobologSchema = new Schema({
-    hobos: [String],
+    hobo: String,
     site: {type: Schema.Types.ObjectId, ref: 'Site'},
     downloads: [{ type: Date }],
     comments: [{ body: String, date: Date }]

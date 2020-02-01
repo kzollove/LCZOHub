@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const campbellSchema = new Schema({
-    sensors: [],
+    sensors: [String],
     site: {type: Schema.Types.ObjectId, ref: 'Site'},
     comments: [{ body: String, date: Date }]
 })
