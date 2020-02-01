@@ -12,6 +12,12 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/:id').get((req, res) => {
+    Site.findById(req.params.id)
+        .then(site => res.json(site))
+        .catch(err => res.status(400).json('Error: ' + err))
+});
+
 router.route('/add').post((req, res) => {
     const name = req.body.name;
     const code = req.body.code;
@@ -42,54 +48,50 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 })
 
-router.route('/:id').get((req, res) => {
-    Site.findById(req.params.id)
-        .then(site => res.json(site))
-        .catch(err => res.status(400).json('Error: ' + err))
-})
 
-//Add HOBO to existing site
-router.route('/add-hobo/:id').post((req, res) => {    
-    Site.findById(req.params.id)
-        .then(site => {
-            site.hobos.push(req.body.hoboId)
+
+// //Add HOBO to existing site
+// router.route('/add-hobo/:id').post((req, res) => {    
+//     Site.findById(req.params.id)
+//         .then(site => {
+//             site.hobos.push(req.body.hoboId)
             
-            site.save()
-                .then(() => res.json('HOBO Added to Site!'))
-                .catch(err => res.status(400).json('Error: ' + err))
-        })
-        .catch(err => res.status(400).json('Error: ' + err))
+//             site.save()
+//                 .then(() => res.json('HOBO Added to Site!'))
+//                 .catch(err => res.status(400).json('Error: ' + err))
+//         })
+//         .catch(err => res.status(400).json('Error: ' + err))
 
-    Hobo.findById(req.body.hoboId)
-        .then(hobo => {
-            hobo.sites.push(req.params.id)
+//     Hobo.findById(req.body.hoboId)
+//         .then(hobo => {
+//             hobo.sites.push(req.params.id)
 
-            hobo.save()
-                .then(() => res.json('Site added to HOBO!'))
-                .catch(err => res.status(400).json('Error: ' + err))
-        })
-        .catch(err => res.status(400).json('Error: ' + err))
-})
+//             hobo.save()
+//                 .then(() => res.json('Site added to HOBO!'))
+//                 .catch(err => res.status(400).json('Error: ' + err))
+//         })
+//         .catch(err => res.status(400).json('Error: ' + err))
+// })
 
-//Deploy Sonde
-router.route('/deploy-sonde/:id').post((req, res) => {  
+// //Deploy Sonde
+// router.route('/deploy-sonde/:id').post((req, res) => {  
     
-    const siteId = req.params.id;
-    const sondeId = req.body.sondeId;
-    const dateDeployed = Date.parse(req.body.dateDeployed);
+//     const siteId = req.params.id;
+//     const sondeId = req.body.sondeId;
+//     const dateDeployed = Date.parse(req.body.dateDeployed);
 
-    const deployment = new Deployment({
-        sondeId,
-        siteId,
-        dateDeployed
-    })
+//     const deployment = new Deployment({
+//         sondeId,
+//         siteId,
+//         dateDeployed
+//     })
 
-    console.log('COmplete')
+//     console.log('COmplete')
 
-    console.log({sonde, dateDeployed})
+//     console.log({sonde, dateDeployed})
  
-    Site.findOneAndUpdate({_id: siteId}, {$push: {sondes: deployment}})
-        .catch(err => res.status(400).json('Error: ' + err))
+//     Site.findOneAndUpdate({_id: siteId}, {$push: {sondes: deployment}})
+//         .catch(err => res.status(400).json('Error: ' + err))
 
     // Sonde.findById(sondeId)
     //     .then(sonde => {
