@@ -3,6 +3,7 @@ let Site = require('../models/site.model');
 let Hobo = require('../models/hobo.model');
 let Sonde = require('../models/sonde.model');
 let Deployment = require('../models/deployment.model');
+let Campbell = require('../models/campbell.model');
 
 
 router.route('/').get((req, res) => {

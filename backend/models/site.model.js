@@ -23,7 +23,7 @@ const siteSchema = new Schema({
     }],
     deployment: [{ type: Schema.Types.ObjectId, ref: 'Deploment' }],
     hobos: [{ type: Schema.Types.ObjectId, ref: 'Hobolog'}],
-    campbell: [String],
+    campbell: { type: Schema.Types.ObjectId, ref: 'Campbell' },
     tags: [String],
     comments: [{ body: String, date: Date }]
 }, { timestamps: true });
