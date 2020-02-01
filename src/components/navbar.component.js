@@ -14,7 +14,7 @@ import {
     NavbarText
   } from 'reactstrap';
 
-  const Example = (props) => {
+  const N = (props) => {
     const [isOpen, setIsOpen] = useState(false);
   
     const toggle = () => setIsOpen(!isOpen);
@@ -27,25 +27,24 @@ import {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink href="/site-map/">Sites</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink href="/sensors/">Sensors</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Options
+                  Logs
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Option 1
+                    <NavLink href="/hobolog/">HOBOs</NavLink>
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                    <NavLink href="/sondelog/">Sondes</NavLink>
                   </DropdownItem>
-                  <DropdownItem divider />
                   <DropdownItem>
-                    Reset
+                    <NavLink href="/campbell/">CR1000</NavLink>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -57,4 +56,4 @@ import {
     );
   }
   
-  export default Example;
+  export default N;
