@@ -14,6 +14,8 @@ import MySite from "./components/my-site.component"
 import Sensors from "./components/sensors.component"
 import SondeLog from "./components/sondelog.component"
 import CR1000 from "./components/campbell.component"
+import Sampling from "./components/sampling.component"
+
 
 
 
@@ -33,6 +35,7 @@ function App() {
       <Route path="/site/:id" component={ MySite } />
 
       <Route path="/sensors" component={ Sensors } />
+      <Route path="/sampling" component={ Sampling } />
 
       <Route path="/deploy" component={ DeploySonde } />
       <Route path="/hobolog" component={ HoboLog } />

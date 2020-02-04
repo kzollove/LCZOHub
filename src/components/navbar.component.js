@@ -32,6 +32,9 @@ import {
               <NavItem>
                 <NavLink href="/sensors/">Sensors</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/sampling/">Sampling</NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Logs
