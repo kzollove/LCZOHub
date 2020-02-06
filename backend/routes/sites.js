@@ -7,8 +7,8 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').get((req, res) => {
-    Site.findById(req.params.id)
+router.route('/:code').get((req, res) => {
+    Site.findOne(req.params.code)
         .then(site => res.json(site))
         .catch(err => res.status(400).json('Error: ' + err))
 });
