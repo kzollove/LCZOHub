@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../App.css';
 import L from 'leaflet'
-import { Container, Row, Col,
+import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody,
     NavLink,
     UncontrolledDropdown,
     DropdownToggle,
@@ -71,70 +71,61 @@ export default class MySite extends Component {
                     </Map>
                     </Col>
                     <Col xl="6" className="alin-center">
-                        <div className="d-flex align-items-center flex-column">
+                        <div className=" accordion d-flex align-items-center flex-column">
                             <div className="mb-auto p-2 bd-highlight">
                                 <div className="d-flex">
-                                <h2>Deployment</h2>
-                                <UncontrolledDropdown>
-                                    <DropdownToggle  tag="span" data-toggle="dropdown">
-                                    <h4><FaAngleRight/></h4>
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                    <DropdownItem>
-                                        <NavLink href="/hobolog/">HOBOs</NavLink>
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        <NavLink href="/sondelog/">Sondes</NavLink>
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        <NavLink href="/campbell/">CR1000</NavLink>
-                                    </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
+                                <div>
+                                    <Button color="primary" id="toggler1" style={{ marginBottom: '1rem' }}>
+                                    Deployment
+                                    </Button>
+                                    <UncontrolledCollapse toggler="#toggler1">
+                                    <Card>
+                                        <CardBody>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt magni, voluptas debitis
+                                        similique porro a molestias consequuntur earum odio officiis natus, amet hic, iste sed
+                                        dignissimos esse fuga! Minus, alias.
+                                        </CardBody>
+                                    </Card>
+                                    </UncontrolledCollapse>
+                                </div>
                                 </div>
                                 <br/>
                             </div>
                             <div className="mb-auto p-2 bd-highlight">
                             <div className="d-flex">
-                                <h2>HOBOs</h2>
-                                <UncontrolledDropdown>
-                                    <DropdownToggle  tag="span" data-toggle="dropdown">
-                                    <h4><FaAngleRight/></h4>
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                    <DropdownItem>
-                                        <NavLink href="/hobolog/">HOBOs</NavLink>
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        <NavLink href="/sondelog/">Sondes</NavLink>
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        <NavLink href="/campbell/">CR1000</NavLink>
-                                    </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
+                            <div>
+                                    <Button color="primary" id="toggler2" style={{ marginBottom: '1rem' }}>
+                                    HOBOs
+                                    </Button>
+                                    <UncontrolledCollapse toggler="#toggler2">
+                                    <Card>
+                                        <CardBody>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt magni, voluptas debitis
+                                        similique porro a molestias consequuntur earum odio officiis natus, amet hic, iste sed
+                                        dignissimos esse fuga! Minus, alias.
+                                        </CardBody>
+                                    </Card>
+                                    </UncontrolledCollapse>
+                                </div>
                                 </div>
                                 <br/>
                             </div>
                                 <div className="mb-auto p-2 bd-highlight">
                                 <div className="d-flex">
-                                <h2>Campbell</h2>
-                                <UncontrolledDropdown>
-                                    <DropdownToggle  tag="span" data-toggle="dropdown">
-                                    <h4><FaAngleRight/></h4>
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                    <DropdownItem>
-                                        <NavLink href="/hobolog/">HOBOs</NavLink>
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        <NavLink href="/sondelog/">Sondes</NavLink>
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        <NavLink href="/campbell/">CR1000</NavLink>
-                                    </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
+                                <div>
+                                    <Button color="primary" id="toggler3" style={{ marginBottom: '1rem' }}>
+                                    Campbell
+                                    </Button>
+                                    <UncontrolledCollapse toggler="#toggler3">
+                                    <Card>
+                                        <CardBody>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt magni, voluptas debitis
+                                        similique porro a molestias consequuntur earum odio officiis natus, amet hic, iste sed
+                                        dignissimos esse fuga! Minus, alias.
+                                        </CardBody>
+                                    </Card>
+                                    </UncontrolledCollapse>
+                                </div>
                                 </div>
                                 <br/>
                             </div>
