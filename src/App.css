@@ -17,10 +17,15 @@ body
     height: 90%;
 }
 
+.row
+{
+    height: 100%;
+}
+
 .my-map
 {
-    height: 70%;
-    width: 30%;
+    height: 80%;
+    width: 100%;
 }
 
 .label

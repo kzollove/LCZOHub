@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../App.css';
 import L from 'leaflet'
+import { Container, Row, Col } from 'reactstrap';
 
 export default class MySite extends Component {
     constructor(props) {
@@ -48,15 +49,38 @@ export default class MySite extends Component {
     render() {
         const position=[this.state.location.lat, this.state.location.lon]
         return(
+            <Container>
             <div className="container">
-                <Map className="my-map" center={position} zoom={this.state.zoom}>
-                    <TileLayer
-                    attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    { this.siteCoords() }
-                </Map>
+                <Row>
+                    <Col xl="6" xs="12">
+                        <h1>{this.state.site}</h1>
+                    <Map className="my-map" center={position} zoom={this.state.zoom}>
+                        <TileLayer
+                        attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        { this.siteCoords() }
+                    </Map>
+                    </Col>
+                    <Col xl="6" className="alin-center">
+                        <div className="d-flex align-items-center flex-column">
+                            <div className="mb-auto p-2 bd-highlight">
+                                <h2>Deployment</h2>
+                                <br/>
+                            </div>
+                            <div className="mb-auto p-2 bd-highlight">
+                                <h2>HOBOs</h2>
+                                <br/>
+                            </div>
+                                <div className="mb-auto p-2 bd-highlight">
+                                <h2>Campbell</h2>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+ 
             </div>
+            </Container>
         );
     }
 }
