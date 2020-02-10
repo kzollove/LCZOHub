@@ -3,7 +3,14 @@ import axios from 'axios';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../App.css';
 import L from 'leaflet'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+ } from 'reactstrap';
+import { FaAngleRight } from 'react-icons/fa'
 
 export default class MySite extends Component {
     constructor(props) {
@@ -51,9 +58,10 @@ export default class MySite extends Component {
         return(
             <Container>
             <div className="container">
+            <h1>{this.state.site}</h1>
                 <Row>
                     <Col xl="6" xs="12">
-                        <h1>{this.state.site}</h1>
+                        
                     <Map className="my-map" center={position} zoom={this.state.zoom}>
                         <TileLayer
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -65,15 +73,70 @@ export default class MySite extends Component {
                     <Col xl="6" className="alin-center">
                         <div className="d-flex align-items-center flex-column">
                             <div className="mb-auto p-2 bd-highlight">
+                                <div className="d-flex">
                                 <h2>Deployment</h2>
+                                <UncontrolledDropdown>
+                                    <DropdownToggle  tag="span" data-toggle="dropdown">
+                                    <h4><FaAngleRight/></h4>
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                    <DropdownItem>
+                                        <NavLink href="/hobolog/">HOBOs</NavLink>
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        <NavLink href="/sondelog/">Sondes</NavLink>
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        <NavLink href="/campbell/">CR1000</NavLink>
+                                    </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                                </div>
                                 <br/>
                             </div>
                             <div className="mb-auto p-2 bd-highlight">
+                            <div className="d-flex">
                                 <h2>HOBOs</h2>
+                                <UncontrolledDropdown>
+                                    <DropdownToggle  tag="span" data-toggle="dropdown">
+                                    <h4><FaAngleRight/></h4>
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                    <DropdownItem>
+                                        <NavLink href="/hobolog/">HOBOs</NavLink>
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        <NavLink href="/sondelog/">Sondes</NavLink>
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        <NavLink href="/campbell/">CR1000</NavLink>
+                                    </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                                </div>
                                 <br/>
                             </div>
                                 <div className="mb-auto p-2 bd-highlight">
+                                <div className="d-flex">
                                 <h2>Campbell</h2>
+                                <UncontrolledDropdown>
+                                    <DropdownToggle  tag="span" data-toggle="dropdown">
+                                    <h4><FaAngleRight/></h4>
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                    <DropdownItem>
+                                        <NavLink href="/hobolog/">HOBOs</NavLink>
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        <NavLink href="/sondelog/">Sondes</NavLink>
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        <NavLink href="/campbell/">CR1000</NavLink>
+                                    </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                                </div>
+                                <br/>
                             </div>
                         </div>
                     </Col>
