@@ -32,7 +32,7 @@ function App() {
       <Route path="/site-list" component={ SiteList } />
       <Route path="/site-create" component={ CreateSite } />
       <Route path="/site-edit/:id" component={ EditSite } />
-      <Route path="/site/:id" component={ MySite } />
+      <Route path="/sites/:code" component={ MySite } />
 
       <Route path="/sensors" component={ Sensors } />
       <Route path="/sampling" component={ Sampling } />

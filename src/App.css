@@ -7,14 +7,20 @@ body
     height: 100vh;
 }
 
-#root
+#root, .container
 {
     height: 100%;
 }
 
 .map
 {
-    height: 100%;
+    height: 90%;
+}
+
+.my-map
+{
+    height: 70%;
+    width: 30%;
 }
 
 .label

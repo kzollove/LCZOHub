@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/:code').get((req, res) => {
-    Site.findOne(req.params.code)
+    Site.findOne({code: req.params.code})
         .then(site => res.json(site))
         .catch(err => res.status(400).json('Error: ' + err))
 });
