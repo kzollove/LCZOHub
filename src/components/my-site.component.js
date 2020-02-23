@@ -27,23 +27,23 @@ const Hobos = (props) => (
 )
 
 const NoHobos = (props) => (
-    <div>
-        <p>No HOBOs deployed</p>
-        <h3>Deploy a HOBO?</h3>
-    </div> 
+    <tr>
+        <td>No HOBOs deployed</td>
+        <td>Deploy a HOBO?</td>
+    </tr> 
 )
 
 const Campbell = (props) => (
     <tr>
-        <td>{props.hobo.hobo}</td>
+        <td>{props.sensor}</td>
     </tr>
 )
 
 const NoCampbell = (props) => (
-    <div>
-        <p>No HOBOs deployed</p>
-        <h3>Deploy a HOBO?</h3>
-    </div> 
+    <tr>
+        <td>No HOBOs deployed</td>
+        <td>Deploy a HOBO?</td>
+    </tr> 
 )
 
 export default class MySite extends Component {
@@ -57,6 +57,7 @@ export default class MySite extends Component {
             },
             deployments: [],
             hobos: [],
+            campbell: null,
             zoom: 10
         };
     }
@@ -69,6 +70,7 @@ export default class MySite extends Component {
                     site: site.data.name,
                     deployments: site.data.deployment,
                     hobos: site.data.hobos,
+                    campbell: site.data.campbell,
                     location: {
                         lat: site.data.location.coordinates[1],
                         lon: site.data.location.coordinates[0]
@@ -114,16 +116,16 @@ export default class MySite extends Component {
         
     }
 
-    // campbellList() {
-    //     if (this.state.campbell.length) {
-    //         return this.state.campbell.map(currentcamp => {
-    //             return <Hobos hobo={currentcamp} key={currentcamp._id} />
-    //         })
-    //     }
-    //     else {
-    //         return <NoCampbell />
-    //     }
-    // }
+    campbellList() {
+        if (this.state.campbell) {
+            return this.state.campbell.sensors.map(currentsensor => {
+                return <Campbell sensor={currentsensor} key={currentsensor._id} />
+            })
+        }
+        else {
+            return <NoCampbell />
+        }
+    }
 
     render() {
         const position=[this.state.location.lat, this.state.location.lon]
@@ -192,9 +194,11 @@ export default class MySite extends Component {
                                     <UncontrolledCollapse toggler="#toggler3">
                                     <Card>
                                         <CardBody>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt magni, voluptas debitis
-                                        similique porro a molestias consequuntur earum odio officiis natus, amet hic, iste sed
-                                        dignissimos esse fuga! Minus, alias.
+                                        <Table hover>
+                                        <tbody>
+                                            { this.campbellList() }
+                                        </tbody>
+                                        </Table>
                                         </CardBody>
                                     </Card>
                                     </UncontrolledCollapse>
