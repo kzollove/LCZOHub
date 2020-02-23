@@ -8,7 +8,7 @@ import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody, Tabl
 const Deployment = (props) => (
     <div>
         <p>Sonde: {props.dep.sonde}</p>
-        <p>Date Deployed: {props.dep.dateDeployed.slice(0,10)}</p>
+        <p>Logging since: {props.dep.dateDeployed.slice(0,10)}</p>
         <h3>End Deployment?</h3>
     </div> 
 )
@@ -24,6 +24,26 @@ const Hobos = (props) => (
     <tr>
         <td>{props.hobo.hobo}</td>
     </tr>
+)
+
+const NoHobos = (props) => (
+    <div>
+        <p>No HOBOs deployed</p>
+        <h3>Deploy a HOBO?</h3>
+    </div> 
+)
+
+const Campbell = (props) => (
+    <tr>
+        <td>{props.hobo.hobo}</td>
+    </tr>
+)
+
+const NoCampbell = (props) => (
+    <div>
+        <p>No HOBOs deployed</p>
+        <h3>Deploy a HOBO?</h3>
+    </div> 
 )
 
 export default class MySite extends Component {
@@ -83,10 +103,27 @@ export default class MySite extends Component {
     }
 
     hoboList() {
-        return this.state.hobos.map(currenthobo => {
-            return <Hobos hobo={currenthobo} key={currenthobo._id} />
-        })
+        if (this.state.hobos.length) {
+            return this.state.hobos.map(currenthobo => {
+                return <Hobos hobo={currenthobo} key={currenthobo._id} />
+            })
+        }
+        else {
+            return <NoHobos />
+        }
+        
     }
+
+    // campbellList() {
+    //     if (this.state.campbell.length) {
+    //         return this.state.campbell.map(currentcamp => {
+    //             return <Hobos hobo={currentcamp} key={currentcamp._id} />
+    //         })
+    //     }
+    //     else {
+    //         return <NoCampbell />
+    //     }
+    // }
 
     render() {
         const position=[this.state.location.lat, this.state.location.lon]

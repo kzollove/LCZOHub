@@ -108,7 +108,6 @@ router.route('/campbell/add').post((req, res) => {
     Site.findById(site)
         .then(site => {
             site.campbell = newCampbell;
-
             site.save()
                 .catch(err => res.status(400).json('Error: ' + err))
         })
