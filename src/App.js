@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import Navbar from "./components/navbar.component";
 import Main from "./components/main.component"
-import Main2 from "./components/main2.component"
 import SiteMap from "./components/site-map.component"
 import SiteList from "./components/site-list.component"
 import CreateSite from "./components/create-site.component"
@@ -28,7 +27,7 @@ function App() {
      
       <Navbar />
       <br />
-      <Route path="/" exact component={ Main2 } />
+      <Route path="/" exact component={ Main } />
 
       <Route path="/site-map" component={ SiteMap } />
       <Route path="/site-list" component={ SiteList } />
