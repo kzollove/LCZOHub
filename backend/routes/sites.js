@@ -16,6 +16,16 @@ router.route('/:code').get((req, res) => {
             match: { isDeployed: { $eq: true} },
             select: 'sonde dateDeployed' 
         })
+        .populate({
+            path: 'hobos',
+            // match: { isDeployed: { $eq: true} },
+            // select: 'sonde dateDeployed' 
+        })
+        .populate({
+            path: 'campbell',
+            // match: { isDeployed: { $eq: true} },
+            // select: 'sonde dateDeployed' 
+        })
         .exec()
         .then(site => res.json(site))
         .catch(err => res.status(400).json('Error: ' + err))

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../App.css';
 import L from 'leaflet'
-import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody } from 'reactstrap';
+import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody, Table } from 'reactstrap';
 
 const Deployment = (props) => (
     <div>
@@ -20,6 +20,12 @@ const Undeployed = (props) => (
     </div> 
 )
 
+const Hobos = (props) => (
+    <tr>
+        <td>{props.hobo.hobo}</td>
+    </tr>
+)
+
 export default class MySite extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +36,7 @@ export default class MySite extends Component {
                 lon: -65.788845
             },
             deployments: [],
+            hobos: [],
             zoom: 10
         };
     }
@@ -41,6 +48,7 @@ export default class MySite extends Component {
                 this.setState({
                     site: site.data.name,
                     deployments: site.data.deployment,
+                    hobos: site.data.hobos,
                     location: {
                         lat: site.data.location.coordinates[1],
                         lon: site.data.location.coordinates[0]
@@ -74,10 +82,10 @@ export default class MySite extends Component {
         }
     }
 
-    deploymentBody() {
-        //this.state.deployments.forEach(i => console.log(i))
-        console.log(this.state)
-        return //this.state.deployments
+    hoboList() {
+        return this.state.hobos.map(currenthobo => {
+            return <Hobos hobo={currenthobo} key={currenthobo._id} />
+        })
     }
 
     render() {
@@ -126,9 +134,11 @@ export default class MySite extends Component {
                                     <UncontrolledCollapse toggler="#toggler2">
                                     <Card>
                                         <CardBody>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt magni, voluptas debitis
-                                        similique porro a molestias consequuntur earum odio officiis natus, amet hic, iste sed
-                                        dignissimos esse fuga! Minus, alias.
+                                        <Table hover>
+                                        <tbody>
+                                            { this.hoboList() }
+                                        </tbody>
+                                        </Table>
                                         </CardBody>
                                     </Card>
                                     </UncontrolledCollapse>
