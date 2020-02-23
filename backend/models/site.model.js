@@ -21,8 +21,8 @@ const siteSchema = new Schema({
         name: String,
         details: String
     }],
-    deployment: [{ type: Schema.Types.ObjectId, ref: 'Deploment' }],
-    hobos: [{ type: Schema.Types.ObjectId, ref: 'Hobolog'}],
+    deployment: [{ type: Schema.Types.ObjectId, ref: 'Deployment' }],
+    hobos: [{ type: Schema.Types.ObjectId, ref: 'Hobolog' }],
     campbell: { type: Schema.Types.ObjectId, ref: 'Campbell' },
     tags: [String],
     comments: [{ body: String, date: Date }]

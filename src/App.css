@@ -32,3 +32,8 @@ body
 {
     font-size: small;
 }
+
+.back-image
+{
+    max-width: 100%;
+}

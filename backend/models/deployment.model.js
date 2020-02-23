@@ -10,6 +10,6 @@ const deploymentSchema = new Schema({
     comments: [{ body: String, date: Date }] 
 })
 
-const Deployment = mongoose.model('Deploy', deploymentSchema)
+const Deployment = mongoose.model('Deployment', deploymentSchema)
 
 module.exports = Deployment;

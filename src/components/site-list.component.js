@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const Site = (props) => (
   <tr>
-    <th scope="row"><Link to={"/site/" + props.site.code}>{props.site.name}</Link></th>
+    <th scope="row"><Link to={"/sites/" + props.site.code}>{props.site.name}</Link></th>
     <td><Link to={"/sites/" + props.site.code}>{props.site.code}</Link></td>
     <td>{props.site.watershed}</td>
   </tr>

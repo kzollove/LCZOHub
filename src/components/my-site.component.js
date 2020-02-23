@@ -3,14 +3,7 @@ import axios from 'axios';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../App.css';
 import L from 'leaflet'
-import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
- } from 'reactstrap';
-import { FaAngleRight } from 'react-icons/fa'
+import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody } from 'reactstrap';
 
 export default class MySite extends Component {
     constructor(props) {
@@ -31,6 +24,7 @@ export default class MySite extends Component {
             .then(site => {
                 this.setState({
                     site: site.data.name,
+                    deployments: site.data.deployment,
                     location: {
                         lat: site.data.location.coordinates[1],
                         lon: site.data.location.coordinates[0]
@@ -51,6 +45,10 @@ export default class MySite extends Component {
         return <Marker position={[this.state.location.lat, this.state.location.lon]} icon={myIcon}>
             <Popup></Popup>
             </Marker>
+    }
+
+    deploymentBody() {
+        return this.state.deployments
     }
 
     render() {
@@ -80,10 +78,9 @@ export default class MySite extends Component {
                                     </Button>
                                     <UncontrolledCollapse toggler="#toggler1">
                                     <Card>
+                                        
                                         <CardBody>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt magni, voluptas debitis
-                                        similique porro a molestias consequuntur earum odio officiis natus, amet hic, iste sed
-                                        dignissimos esse fuga! Minus, alias.
+                                        { this.deploymentBody() }
                                         </CardBody>
                                     </Card>
                                     </UncontrolledCollapse>
