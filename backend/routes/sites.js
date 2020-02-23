@@ -3,8 +3,6 @@ let Site = require('../models/site.model');
 
 router.route('/').get((req, res) => {
     Site.find()
-        .populate('deployment')
-        .exec()
         .then(sites => res.json(sites))
         .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -13,7 +11,11 @@ router.route('/').get((req, res) => {
 
 router.route('/:code').get((req, res) => {
     Site.findOne({code: req.params.code})
-        .populate('deployment', 'sonde')
+        .populate({
+            path: 'deployment',
+            match: { isDeployed: { $eq: true} },
+            select: 'sonde dateDeployed' 
+        })
         .exec()
         .then(site => res.json(site))
         .catch(err => res.status(400).json('Error: ' + err))

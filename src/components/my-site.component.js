@@ -5,6 +5,21 @@ import '../App.css';
 import L from 'leaflet'
 import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody } from 'reactstrap';
 
+const Deployment = (props) => (
+    <div>
+        <p>Sonde: {props.dep.sonde}</p>
+        <p>Date Deployed: {props.dep.dateDeployed.slice(0,10)}</p>
+        <h3>End Deployment?</h3>
+    </div> 
+)
+
+const Undeployed = (props) => (
+    <div>
+        <p>No sonde deployed</p>
+        <h3>Deploy a sonde?</h3>
+    </div> 
+)
+
 export default class MySite extends Component {
     constructor(props) {
         super(props);
@@ -14,6 +29,7 @@ export default class MySite extends Component {
                 lat: 18.281988,
                 lon: -65.788845
             },
+            deployments: [],
             zoom: 10
         };
     }
@@ -47,8 +63,21 @@ export default class MySite extends Component {
             </Marker>
     }
 
+    depList() {
+        if (this.state.deployments.length) {
+            return this.state.deployments.map(currentdep => {
+                return <Deployment dep={currentdep} key={currentdep._id} />
+            })
+        }
+        else {
+            return <Undeployed />
+        }
+    }
+
     deploymentBody() {
-        return this.state.deployments
+        //this.state.deployments.forEach(i => console.log(i))
+        console.log(this.state)
+        return //this.state.deployments
     }
 
     render() {
@@ -80,7 +109,7 @@ export default class MySite extends Component {
                                     <Card>
                                         
                                         <CardBody>
-                                        { this.deploymentBody() }
+                                        { this.depList() }
                                         </CardBody>
                                     </Card>
                                     </UncontrolledCollapse>
