@@ -7,55 +7,22 @@ import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody, Tabl
 
 const Deployment = (props) => (
     <div>
-        <Button color="primary" id="toggler1" style={{ marginBottom: '1rem' }}>
-        Deployment
-        </Button>
-        <UncontrolledCollapse toggler="#toggler1">
-        <Card>
-            <CardBody>
-            <p>Sonde: {props.dep.sonde}</p>
-            <p>Logging since: {props.dep.dateDeployed.slice(0,10)}</p>
-            <h3>End Deployment?</h3>
-            </CardBody>
-        </Card>
-        </UncontrolledCollapse>
-    </div> 
-)
-
-const Undeployed = (props) => (
-    <div>
-        <p>No sonde deployed</p>
-        <h3>Deploy a sonde?</h3>
+        <p>Sonde: {props.dep.sonde}</p>
+        <p>Logging since: {props.dep.dateDeployed.slice(0,10)}</p>
+        <h3>End Deployment?</h3>
     </div> 
 )
 
 const Hobos = (props) => (
-
-        <tr>
+    <tr>
         <td>{props.hobo.hobo}</td>
     </tr>
-       
-
-)
-
-const NoHobos = (props) => (
-    <tr>
-        <td>No HOBOs deployed</td>
-        <td>Deploy a HOBO?</td>
-    </tr> 
 )
 
 const Campbell = (props) => (
     <tr>
         <td>{props.sensor}</td>
     </tr>
-)
-
-const NoCampbell = (props) => (
-    <tr>
-        <td>No HOBOs deployed</td>
-        <td>Deploy a HOBO?</td>
-    </tr> 
 )
 
 export default class MySite extends Component {
@@ -106,63 +73,102 @@ export default class MySite extends Component {
     }
 
     depList() {
-        if (this.state.deployments.length) {
-            return this.state.deployments.map(currentdep => {
-                return <Deployment dep={currentdep} key={currentdep._id} />
-            })
-        }
-        else {
-            return <Undeployed />
-        }
+        return this.state.deployments.map(currentdep => {
+            return <Deployment dep={currentdep} key={currentdep._id} />
+        })
     }
 
     hoboList() {
-        if (this.state.hobos.length) {
-            return this.state.hobos.map(currenthobo => {
-                return <Hobos hobo={currenthobo} key={currenthobo._id} />
-            })
-        }
-        else {
-            return <NoHobos />
-        }
-        
+        return this.state.hobos.map(currenthobo => {
+            return <Hobos hobo={currenthobo} key={currenthobo._id} />
+        })
     }
 
     campbellList() {
-        if (this.state.campbell) {
-            return this.state.campbell.sensors.map(currentsensor => {
-                return <Campbell sensor={currentsensor} key={currentsensor._id} />
-            })
-        }
-        else {
-            return <NoCampbell />
-        }
+        return this.state.campbell.sensors.map(currentsensor => {
+            return <Campbell sensor={currentsensor} key={currentsensor._id} />
+        })
     }
 
     render() {
         const position=[this.state.location.lat, this.state.location.lon]
 
+        let deployment;
+        if (this.state.deployments.length) {
+            deployment = <div>
+                        <Button color="primary" id="toggler1" style={{ marginBottom: '1rem' }}>
+                        Deployment
+                        </Button>
+                        <UncontrolledCollapse toggler="#toggler1">
+                        <Card>
+                            <CardBody>
+                            <Table hover>
+                            <tbody>
+                            { this.depList() }
+                            </tbody>
+                            </Table>
+                            </CardBody>
+                        </Card>
+                        </UncontrolledCollapse>
+                    </div>
+        }
+        else {
+            deployment =     <div>
+                                <p>No sonde deployed</p>
+                                <h3>Deploy a sonde?</h3>
+                            </div> 
+        }
+
         let hobos;
         if (this.state.hobos.length) {
-            hobos =                             <div>
-                                                    <Button color="primary" id="toggler2" style={{ marginBottom: '1rem' }}>
-                                                    HOBOs
-                                                    </Button>
-                                                    <UncontrolledCollapse toggler="#toggler2">
-                                                    <Card>
-                                                        <CardBody>
-                                                        <Table hover>
-                                                        <tbody>
-                                                        { this.hoboList() }
-                                                        </tbody>
-                                                        </Table>
-                                                        </CardBody>
-                                                    </Card>
-                                                    </UncontrolledCollapse>
-                                                </div>
+            hobos = <div>
+                        <Button color="primary" id="toggler2" style={{ marginBottom: '1rem' }}>
+                        HOBOs
+                        </Button>
+                        <UncontrolledCollapse toggler="#toggler2">
+                        <Card>
+                            <CardBody>
+                            <Table hover>
+                            <tbody>
+                            { this.hoboList() }
+                            </tbody>
+                            </Table>
+                            </CardBody>
+                        </Card>
+                        </UncontrolledCollapse>
+                    </div>
         }
-        else{
-            hobos = <div>{ this.hoboList() }</div>
+        else {
+            hobos =    <tr>
+                            <td>No HOBOs deployed</td>
+                            <td>Deploy a HOBO?</td>
+                        </tr> 
+        }
+
+        let campbell;
+        if (this.state.campbell) {
+            campbell = <div>
+                        <Button color="primary" id="toggler3" style={{ marginBottom: '1rem' }}>
+                        Campbell
+                        </Button>
+                        <UncontrolledCollapse toggler="#toggler3">
+                        <Card>
+                            <CardBody>
+                            <Table hover>
+                            <tbody>
+                            { this.campbellList() }
+                            </tbody>
+                            </Table>
+                            </CardBody>
+                        </Card>
+                        </UncontrolledCollapse>
+                    </div>
+        }
+        else {
+            campbell =     <tr>
+                                <td>No HOBOs deployed</td>
+                                <td>Deploy a HOBO?</td>
+                            </tr> 
         }
 
         return(
@@ -184,43 +190,25 @@ export default class MySite extends Component {
                         <div className=" accordion d-flex align-items-center flex-column">
                             <div className="mb-auto p-2 bd-highlight">
                                 <div className="d-flex">
-                                { this.depList() }
+                                    { deployment }
                                 </div>
                                 <br/>
                             </div>
                             <div className="mb-auto p-2 bd-highlight">
-                            <div className="d-flex">
-
-                                {hobos}
-
+                                <div className="d-flex">
+                                    { hobos }
                                 </div>
                                 <br/>
                             </div>
-                                <div className="mb-auto p-2 bd-highlight">
+                            <div className="mb-auto p-2 bd-highlight">
                                 <div className="d-flex">
-                                <div>
-                                    <Button color="primary" id="toggler3" style={{ marginBottom: '1rem' }}>
-                                    Campbell
-                                    </Button>
-                                    <UncontrolledCollapse toggler="#toggler3">
-                                    <Card>
-                                        <CardBody>
-                                        <Table hover>
-                                        <tbody>
-                                            { this.campbellList() }
-                                        </tbody>
-                                        </Table>
-                                        </CardBody>
-                                    </Card>
-                                    </UncontrolledCollapse>
-                                </div>
+                                    { campbell }
                                 </div>
                                 <br/>
                             </div>
                         </div>
                     </Col>
                 </Row>
- 
             </div>
             </Container>
         );
