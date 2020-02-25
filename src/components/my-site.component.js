@@ -7,9 +7,18 @@ import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody, Tabl
 
 const Deployment = (props) => (
     <div>
-        <p>Sonde: {props.dep.sonde}</p>
-        <p>Logging since: {props.dep.dateDeployed.slice(0,10)}</p>
-        <h3>End Deployment?</h3>
+        <Button color="primary" id="toggler1" style={{ marginBottom: '1rem' }}>
+        Deployment
+        </Button>
+        <UncontrolledCollapse toggler="#toggler1">
+        <Card>
+            <CardBody>
+            <p>Sonde: {props.dep.sonde}</p>
+            <p>Logging since: {props.dep.dateDeployed.slice(0,10)}</p>
+            <h3>End Deployment?</h3>
+            </CardBody>
+        </Card>
+        </UncontrolledCollapse>
     </div> 
 )
 
@@ -21,9 +30,12 @@ const Undeployed = (props) => (
 )
 
 const Hobos = (props) => (
-    <tr>
+
+        <tr>
         <td>{props.hobo.hobo}</td>
     </tr>
+       
+
 )
 
 const NoHobos = (props) => (
@@ -129,6 +141,30 @@ export default class MySite extends Component {
 
     render() {
         const position=[this.state.location.lat, this.state.location.lon]
+
+        let hobos;
+        if (this.state.hobos.length) {
+            hobos =                             <div>
+                                                    <Button color="primary" id="toggler2" style={{ marginBottom: '1rem' }}>
+                                                    HOBOs
+                                                    </Button>
+                                                    <UncontrolledCollapse toggler="#toggler2">
+                                                    <Card>
+                                                        <CardBody>
+                                                        <Table hover>
+                                                        <tbody>
+                                                        { this.hoboList() }
+                                                        </tbody>
+                                                        </Table>
+                                                        </CardBody>
+                                                    </Card>
+                                                    </UncontrolledCollapse>
+                                                </div>
+        }
+        else{
+            hobos = <div>{ this.hoboList() }</div>
+        }
+
         return(
             <Container>
             <div className="container">
@@ -148,40 +184,15 @@ export default class MySite extends Component {
                         <div className=" accordion d-flex align-items-center flex-column">
                             <div className="mb-auto p-2 bd-highlight">
                                 <div className="d-flex">
-                                <div>
-                                    <Button color="primary" id="toggler1" style={{ marginBottom: '1rem' }}>
-                                    Deployment
-                                    </Button>
-                                    <UncontrolledCollapse toggler="#toggler1">
-                                    <Card>
-                                        
-                                        <CardBody>
-                                        { this.depList() }
-                                        </CardBody>
-                                    </Card>
-                                    </UncontrolledCollapse>
-                                </div>
+                                { this.depList() }
                                 </div>
                                 <br/>
                             </div>
                             <div className="mb-auto p-2 bd-highlight">
                             <div className="d-flex">
-                            <div>
-                                    <Button color="primary" id="toggler2" style={{ marginBottom: '1rem' }}>
-                                    HOBOs
-                                    </Button>
-                                    <UncontrolledCollapse toggler="#toggler2">
-                                    <Card>
-                                        <CardBody>
-                                        <Table hover>
-                                        <tbody>
-                                            { this.hoboList() }
-                                        </tbody>
-                                        </Table>
-                                        </CardBody>
-                                    </Card>
-                                    </UncontrolledCollapse>
-                                </div>
+
+                                {hobos}
+
                                 </div>
                                 <br/>
                             </div>
