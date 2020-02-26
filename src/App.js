@@ -38,7 +38,7 @@ function App() {
       <Route path="/sensors" component={ Sensors } />
       <Route path="/sampling" component={ Sampling } />
 
-      <Route path="/deploy" component={ DeploySonde } />
+      <Route path="/sites/:code/deploy" component={ DeploySonde } />
       <Route path="/hobolog" component={ HoboLog } />
       <Route path="/sondelog" component={ SondeLog } />
       <Route path="/campbell" component={ CR1000 } />
