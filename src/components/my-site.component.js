@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Link from 'react-router-dom'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../App.css';
 import L from 'leaflet'
@@ -43,7 +44,6 @@ export default class MySite extends Component {
     }
 
     componentDidMount() {
-        //let code = window.location.href.slice(28)
         axios.get('http://localhost:5000' + this.props.location.pathname)
             .then(site => {
                 this.setState({
@@ -116,7 +116,7 @@ export default class MySite extends Component {
         else {
             deployment =     <div>
                                 <p>No sonde deployed</p>
-                                <h3>Deploy a sonde?</h3>
+                                <h3><Link>Deploy a sonde?</Link></h3>
                             </div> 
         }
 
