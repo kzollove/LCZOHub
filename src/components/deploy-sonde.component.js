@@ -29,11 +29,20 @@ export default class DeploySonde extends Component {
           if (res.data.length > 0) {
             this.setState({
               sites: res.data.map(site => site.name),
-              site: res.data[0].name
             })
           }
         })
+      
+      axios.get('http://localhost:5000/sites/' + this.props.location.state.site)
+      .then(site => {
+          this.setState({
+            site: site.data.name
+          })
+      })
+
     }
+    
+
 
     onChangeSonde(e) {
         this.setState({

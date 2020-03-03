@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Link from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../App.css';
 import L from 'leaflet'
@@ -44,6 +44,7 @@ export default class MySite extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props)
         axios.get('http://localhost:5000' + this.props.location.pathname)
             .then(site => {
                 this.setState({
@@ -116,7 +117,7 @@ export default class MySite extends Component {
         else {
             deployment =     <div>
                                 <p>No sonde deployed</p>
-                                <h3><Link>Deploy a sonde?</Link></h3>
+                                <h3><Link to={{pathname: "/deploy", state:{site: this.props.match.params.code}}} >Deploy a sonde?</Link></h3>
                             </div> 
         }
 
