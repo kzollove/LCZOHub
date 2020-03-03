@@ -4,6 +4,7 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../App.css';
 import L from 'leaflet'
 import { Container, Row, Col, UncontrolledCollapse, Button, Card, CardBody, Table } from 'reactstrap';
+import queryString from 'query-string'
 
 const Deployment = (props) => (
     <div>
@@ -42,8 +43,8 @@ export default class MySite extends Component {
     }
 
     componentDidMount() {
-        let code = window.location.href.slice(28)
-        axios.get('http://localhost:5000/sites/' + code)
+        //let code = window.location.href.slice(28)
+        axios.get('http://localhost:5000' + this.props.location.pathname)
             .then(site => {
                 this.setState({
                     site: site.data.name,
