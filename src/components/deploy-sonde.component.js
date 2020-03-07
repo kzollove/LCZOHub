@@ -17,6 +17,7 @@ export default class DeploySonde extends Component {
         this.state = {
             sonde: '',
             site: '',
+            siteId: '',
             sites: [],
             dateDeployed: new Date(),
             comment: '',
@@ -36,9 +37,12 @@ export default class DeploySonde extends Component {
       axios.get('http://localhost:5000/sites/' + this.props.location.state.site)
       .then(site => {
           this.setState({
-            site: site.data.name
+            site: site.data.name,
+            siteId: site.data._id
           })
       })
+
+
 
     }
     
@@ -74,13 +78,30 @@ export default class DeploySonde extends Component {
         e.preventDefault();
         const deployment = {
             sonde: this.state.sonde,
-            site: this.state.site,
+            site: this.state.siteId,
             dateDeployed: this.state.dateDeployed,
             isDeployed: true,
-            comment: [this.state.comment, this.state.dateDeployed]
+            comments: {body: this.state.comment, date: this.state.dateDeployed}
         }
-
-        console.log(deployment)
+        // const testDep = {
+        //   "sonde": "MANTA",
+        //   "site": "5e3f31b030cb0916e1a82cda",
+        //   "dateDeployed": "2020-02-08T22:09:39.943Z",
+        //   "isDeployed": true
+        // }
+      
+        // axios({
+        //   method: "post",
+        //   url: "http://localhost:5000/sensors/deployments/deploy/",
+        //   headers: {
+        //     "Content-Type": "application/json"
+        //   },
+        //   data: testDep
+        // })
+        axios.post('http://localhost:5000/sensors/deployments/deploy/', deployment)
+          .then(res => console.log(res.data))
+          .catch(err => console.error(err))
+        // console.log(deployment)
 
         // window.location = '/'
     }

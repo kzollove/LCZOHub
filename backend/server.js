@@ -2,9 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const sitesRouter = require('./routes/sites');
-const sensorsRouter = require('./routes/sensors');
-
 require('dotenv').config()
 
 const app = express();
@@ -19,6 +16,9 @@ const connection = mongoose.connection;
 connection.once('open', () => {
     console.log('MongoDB database connection established succesfully');
 })
+
+const sitesRouter = require('./routes/sites');
+const sensorsRouter = require('./routes/sensors');
 
 app.use('/sites', sitesRouter)
 app.use('/sensors', sensorsRouter)

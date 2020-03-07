@@ -18,8 +18,8 @@ router.route('/deployments/deploy').post((req, res) => {
 
     const sonde = req.body.sonde;
     const site = req.body.site;
-    const dateDeployed = req.body.dateDeployed;
-    const dateRetrieved = req.body.dateRetrieved;
+    const dateDeployed = Date.parse(req.body.dateDeployed);
+    //const dateRetrieved = Date.parse(req.body.dateRetrieved);
     const isDeployed = req.body.isDeployed;
     const comments = req.body.comments;
 
@@ -27,7 +27,7 @@ router.route('/deployments/deploy').post((req, res) => {
         sonde,
         site,
         dateDeployed,
-        dateRetrieved,
+        //dateRetrieved,
         isDeployed,
         comments
     });
@@ -43,7 +43,7 @@ router.route('/deployments/deploy').post((req, res) => {
 
     newDeployment.save()
         .then(() => res.json('Sonde Deployed'))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(400).json('Error:' + err))
 })
 
 router.route('/hobos').get((req, res) => {
